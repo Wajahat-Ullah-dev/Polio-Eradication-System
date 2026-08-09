@@ -1,0 +1,35 @@
+
+@model IEnumerable<PolioEradication.Models.Entities.VaccinationSchedule>
+
+@{
+    ViewData["Title"] = "Upcoming Campaigns";
+}
+
+<div class="container">
+    <h1 class="mt-4">Upcoming Vaccination Campaigns</h1>
+    <p>Check the schedule below to find vaccination drives in your area.</p>
+    
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-info text-white">
+                        @item.Date.ToShortDateString()
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Title</h5>
+                        <p class="card-text">@item.Description</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Location:</strong> @item.Location</li>
+                            <li class="list-group-item"><strong>Age Group:</strong> @item.AgeGroup</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-action="RequestVaccination" asp-route-scheduleId="@item.Id" class="btn btn-primary w-100">Register for this Drive</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

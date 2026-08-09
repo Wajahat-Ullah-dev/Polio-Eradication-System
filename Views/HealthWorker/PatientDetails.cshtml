@@ -1,0 +1,54 @@
+
+@model PolioEradication.Models.Entities.ApplicationUser
+
+@{
+    ViewData["Title"] = "Patient Details";
+}
+
+<div class="container">
+    <h1>Patient Details</h1>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Full Name</dt>
+        <dd class="col-sm-10">@Model.FullName</dd>
+        
+        <dt class="col-sm-2">Email</dt>
+        <dd class="col-sm-10">@Model.Email</dd>
+        
+        <dt class="col-sm-2">CNIC</dt>
+        <dd class="col-sm-10">@Model.CNIC</dd>
+        
+        <dt class="col-sm-2">Address</dt>
+        <dd class="col-sm-10">@Model.Address</dd>
+    </dl>
+
+    <h3 class="mt-4">Vaccination History</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Campaign</th>
+                <th>Status</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.Requests != null)
+            {
+                foreach (var req in (IEnumerable<PolioEradication.Models.Entities.VaccinationRequest>)ViewBag.Requests)
+                {
+                    <tr>
+                        <td>@req.RequestDate.ToShortDateString()</td>
+                        <td>@(req.Schedule?.Title ?? "On Demand")</td>
+                        <td>@req.Status</td>
+                        <td>@req.Address</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    
+    <div class="mt-3">
+        <a asp-action="Patients" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

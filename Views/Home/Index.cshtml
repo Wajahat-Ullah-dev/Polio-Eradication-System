@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewData["Title"] = "Polio Eradication Initiative";
+}
+
+<div class="jumbotron p-5 text-white rounded bg-dark mb-4" style="background: url('https://images.unsplash.com/photo-1584036561566-b93a50208c3c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center center / cover no-repeat;">
+    <div class="Container" style="background-color: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px;">
+        <h1 class="display-3 font-italic">Eradicate Polio Together</h1>
+        <p class="lead my-3">Join our mission to create a polio-free world. Every child deserves a healthy future.</p>
+        <p class="lead mb-0">
+            @if (User.Identity.IsAuthenticated)
+            {
+               <a asp-controller="Home" asp-action="About" class="text-white font-weight-bold">Learn More...</a>
+            }
+            else
+            {
+                <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-primary btn-lg">Join Us Today</a>
+            }
+        </p>
+    </div>
+</div>
+
+<div class="row mb-2">
+    <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-primary">Mission</strong>
+                <h3 class="mb-0">Our Goal</h3>
+                <div class="mb-1 text-muted">Since 1988</div>
+                <p class="card-text mb-auto">We are dedicated to the complete eradication of polio. Through vaccination drives and community engagement, we are making history.</p>
+                <a asp-controller="Home" asp-action="About" class="stretched-link">Continue reading</a>
+            </div>
+            <div class="col-auto d-none d-lg-block">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Thumbnail" width="200" height="250">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-success">Action</strong>
+                <h3 class="mb-0">Get Vaccinated</h3>
+                <div class="mb-1 text-muted">Campaigns</div>
+                <p class="mb-auto">Find upcoming vaccination schedules in your area and ensure your children are protected.</p>
+                <a asp-area="Identity" asp-page="/Account/Login" class="stretched-link">Log in to view</a>
+            </div>
+            <div class="col-auto d-none d-lg-block">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Thumbnail" width="200" height="250">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row text-center">
+    <div class="col-lg-4">
+        <div class="card mb-4 shadow-sm">
+             <div class="card-header">
+                <h4 class="my-0 font-weight-normal">For Patients</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">Free <small class="text-muted">/ child</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>View Schedules</li>
+                    <li>Request Vaccination</li>
+                    <li>Track History</li>
+                    <li>24/7 Support</li>
+                </ul>
+                <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</a>
+            </div>
+        </div>
+    </div>
+     <div class="col-lg-4">
+        <div class="card mb-4 shadow-sm">
+             <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Health Workers</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">Serve <small class="text-muted">/ community</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>Manage Patients</li>
+                    <li>Report Cases</li>
+                    <li>Track Campaigns</li>
+                    <li>Real-time updates</li>
+                </ul>
+                <a href="#" class="btn btn-lg btn-block btn-primary">Contact Admin to Join</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card mb-4 shadow-sm">
+             <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Admins</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">Manage <small class="text-muted">/ system</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>User Management</li>
+                    <li>Schedule Control</li>
+                    <li>Statistics Dashboard</li>
+                    <li>Full Oversight</li>
+                </ul>
+                <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-lg btn-block btn-outline-primary">Login</a>
+            </div>
+        </div>
+    </div>
+</div>

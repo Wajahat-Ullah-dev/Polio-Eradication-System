@@ -1,0 +1,44 @@
+
+@model PolioEradication.Models.Entities.VaccinationRequest
+
+@{
+    ViewData["Title"] = "Request Vaccination";
+}
+
+<div class="container">
+    <h1>Request Vaccination</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <p class="alert alert-info">
+                Please confirm your address for the vaccination team.
+            </p>
+            <form asp-action="RequestVaccination">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                
+                @if (ViewBag.ScheduleId != null)
+                {
+                    <input type="hidden" name="ScheduleId" value="@ViewBag.ScheduleId" />
+                    <div class="mb-3">
+                        <span class="badge bg-secondary">Linked to Campaign ID: @ViewBag.ScheduleId</span>
+                    </div>
+                }
+
+                <div class="form-group mb-3">
+                    <label asp-for="Address" class="control-label">Current Address</label>
+                    <textarea asp-for="Address" class="form-control" rows="3" placeholder="Enter your full home address..."></textarea>
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Submit Request" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

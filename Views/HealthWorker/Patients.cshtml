@@ -1,0 +1,43 @@
+
+@model IEnumerable<PolioEradication.Models.Entities.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Assigned Patients";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Patient Records</h1>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-user-injured me-1"></i>
+            Patients List
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Full Name</th>
+                        <th>CNIC</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>@user.Email</td>
+                            <td>@user.FullName</td>
+                            <td>@user.CNIC</td>
+                            <td>@user.Address</td>
+                            <td>
+                                <a asp-action="PatientDetails" asp-route-id="@user.Id" class="btn btn-sm btn-info">View Details</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

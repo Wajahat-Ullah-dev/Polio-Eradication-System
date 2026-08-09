@@ -1,0 +1,71 @@
+
+@model IEnumerable<PolioEradication.Models.Entities.VaccinationRequest>
+
+@{
+    ViewData["Title"] = "Vaccination Requests";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Vaccination Requests</h1>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-syringe me-1"></i>
+            Requests Buffer
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Address</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(item.Patient?.FullName ?? "Unknown")</td>
+                            <td>@item.Address</td>
+                            <td>@item.RequestDate.ToShortDateString()</td>
+                            <td>
+                                @if (item.Status == "Pending")
+                                {
+                                    <span class="badge bg-warning">Pending</span>
+                                }
+                                else if (item.Status == "Approved")
+                                {
+                                    <span class="badge bg-primary">Approved</span>
+                                }
+                                else if (item.Status == "Completed")
+                                {
+                                    <span class="badge bg-success">Completed</span>
+                                }
+                            </td>
+                            <td>
+                                @if (item.Status == "Pending")
+                                {
+                                    <form asp-action="UpdateRequestStatus" method="post" class="d-inline">
+                                        <input type="hidden" name="id" value="@item.Id" />
+                                        <input type="hidden" name="status" value="Approved" />
+                                        <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                    </form>
+                                }
+                                @if (item.Status == "Approved")
+                                {
+                                    <form asp-action="UpdateRequestStatus" method="post" class="d-inline">
+                                        <input type="hidden" name="id" value="@item.Id" />
+                                        <input type="hidden" name="status" value="Completed" />
+                                        <button type="submit" class="btn btn-sm btn-primary">Mark Complete</button>
+                                    </form>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

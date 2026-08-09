@@ -1,0 +1,32 @@
+
+@{
+    ViewData["Title"] = "Contact Admin";
+}
+
+<div class="container">
+    <h1>Contact Administrator</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            @if (ViewBag.Message != null)
+            {
+                <div class="alert alert-success">@ViewBag.Message</div>
+            }
+
+            <form asp-action="ContactAdmin" method="post">
+                <div class="form-group mb-3">
+                    <label class="control-label">Subject</label>
+                    <input name="subject" class="form-control" required />
+                </div>
+                <div class="form-group mb-3">
+                    <label class="control-label">Message</label>
+                    <textarea name="message" class="form-control" rows="5" required></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Send Message" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-secondary">Back to Dashboard</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

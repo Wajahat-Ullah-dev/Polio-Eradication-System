@@ -1,0 +1,73 @@
+
+@model IEnumerable<PolioEradication.Models.Entities.VaccinationRequest>
+
+@{
+    ViewData["Title"] = "My Dashboard";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">My Dashboard</h1>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Welcome!</h5>
+                    <p class="card-text">Manage your vaccination requests and view upcoming schedules.</p>
+                    <a asp-action="RequestVaccination" class="btn btn-primary">Request Vaccination</a>
+                    <a asp-action="Schedule" class="btn btn-outline-primary">View Schedule</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-history me-1"></i>
+            My Vaccination History
+        </div>
+        <div class="card-body">
+            @if (!Model.Any())
+            {
+                <p class="text-muted">No vaccination requests found.</p>
+            }
+            else
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date Requested</th>
+                            <th>Campaign / Type</th>
+                            <th>Status</th>
+                            <th>Admin/Worker Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.RequestDate.ToShortDateString()</td>
+                                <td>@(item.Schedule?.Title ?? "General Request")</td>
+                                <td>
+                                    @if (item.Status == "Pending")
+                                    {
+                                        <span class="badge bg-warning text-dark">Pending</span>
+                                    }
+                                    else if (item.Status == "Approved")
+                                    {
+                                        <span class="badge bg-info">Approved</span>
+                                    }
+                                    else if (item.Status == "Completed")
+                                    {
+                                        <span class="badge bg-success">Completed</span>
+                                    }
+                                </td>
+                                <td>-</td> 
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>
